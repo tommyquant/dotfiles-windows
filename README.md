@@ -41,3 +41,5 @@ Finally, you'll need to set up VS Code so you can develop within WSL and Docker 
 
 1. (Optional) Open VS Code and install [Settings Sync](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync). This extension will download backed up settings and extensions.
 1. If you don't have them, install the [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) and [Remote - WSL](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl) extensions. These will allow you to develop within WSL and Docker containers.
+1. By default, the containers extension will try to mount files from Windows. To mount from your WSL 2 distro instead, open your VS Code settings and search for **Experimental WSL** and enable it.
+1. Follow instructions [here](https://stuartleeks.com/posts/vscode-devcontainers-wsl/) on how to mount WSL 2 folders into a Docker container.
