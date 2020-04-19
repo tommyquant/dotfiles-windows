@@ -16,33 +16,32 @@ Retail
 
 To keep a consistent development environment, all development should be done on Linux. For Windows, this means developing within Docker containers.
 
+First, you'll need to set up VS Code so that it can connect to Docker containers.
+
 1. (Optional) Open VS Code and install [Settings Sync](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync). This extension will download backed up settings and extensions.
 1. If you don't have it, install the [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension. These will allow you to connect VS Code to a Docker container.
 
+Next, you'll need to create a container that will be your development environment. This repo already includes a Dockerfile that builds an Ubuntu image with Node and Zsh installed. You can use Docker Compose to build and start the container by running `docker-compose up -d --build`.
 
-## Workflow
+If you check the `docker-compose.yml` file, you'll notice that it creates and mounts a named volume instead of using bind mounts. This is to keep your files isolated from the Windows filesystem which will give the best read/write performance. Another benefit of using named volumes is that your files will persist through container rebuilds and you can also mount them into other containers.
 
-Where possible, you should have your files isolated from the Windows filesystem for best performance. This means you shouldn't use bind mounts to mount files from Windows into the container. Ideally, you won't have any development-related files on Windows.
+Once the container is running, open VS Code and then open the Command Palette. Attach to the running container by executing **Remote-Containers: Attach to Running Container**. This will open a new instance of VS Code and you can now open any file/folder from the container.
 
-Instead, you should clone your repo directly into the container. There are a few methods to do this.
+If you open a terminal connected to your container (either through VS Code's integrated terminal or an external terminal), you'll notice that the Zsh theme won't look correct. This is because your host system/terminal is not using a Powerline font. To fix this, install one of the fonts from the [Powerline fonts](https://github.com/powerline/fonts) repo and then configure your terminal to use that font. For VS Code, you'll need to restart VS Code, open your settings and edit **Terminal > Integrated: Font Family**.
 
-### Method A
-
-1. Open VS Code and execute the **Remote-Containers: Open Repository in Container** command. This will clone your repo into a named volume and then mount that volume into a container. You'll also get an option to choose a Docker image.
-
-### Method B
-
-1. Create a Dockerfile that builds an image with all of your dependencies.
-2. Start a container with the new image. You can keep the container running by setting its command to `/bin/sh -c echo Container started ; while sleep 1; do :; done`.
-3. Start an interactive session with your container and then clone your repo(s) into the container. Optionally, you can also create a single named volume to store all of your repos so that they persist through container rebuilds. This also lets you share files between containers.
+Finally, you can clone your repos into `/repos` and start working!
 
 ## Setting Git credentials
 
 Before setting your Git credentials, log in to GitHub and get your private email address (or set it up). Afterwards, run these commands in the container (replace your name and email):
 
-```
+```sh
 git config --global user.name "Some private name"
 git config --global user.email "hash+username@users.noreply.github.com"
+
+# Configure Git to ensure line endings in files you checkout are correct for Windows.
+# For compatibility, line endings are converted to Unix style when you commit files.
+git config --global core.autocrlf true
 ```
 
 When you need to push, Git will ask you for your username and password. If you have 2FA enabled, you'll need to use an access token when it asks for your password. If you don't have a token already, [create one](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line).

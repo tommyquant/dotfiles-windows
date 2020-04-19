@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  env:
+    build: .
+    image: dev-image:latest
+    volumes:
+        - repos:/repos
+
+volumes:
+  repos:
