@@ -35,3 +35,14 @@ Instead, you should clone your repo directly into the container. There are a few
 1. Create a Dockerfile that builds an image with all of your dependencies.
 2. Start a container with the new image. You can keep the container running by setting its command to `/bin/sh -c echo Container started ; while sleep 1; do :; done`.
 3. Start an interactive session with your container and then clone your repo(s) into the container. Optionally, you can also create a single named volume to store all of your repos so that they persist through container rebuilds. This also lets you share files between containers.
+
+## Setting Git credentials
+
+Before setting your Git credentials, log in to GitHub and get your private email address (or set it up). Afterwards, run these commands in the container (replace your name and email):
+
+```
+git config --global user.name "Some private name"
+git config --global user.email "hash+username@users.noreply.github.com"
+```
+
+When you need to push, Git will ask you for your username and password. If you have 2FA enabled, you'll need to use an access token when it asks for your password. If you don't have a token already, [create one](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line).
