@@ -24,7 +24,10 @@ RUN apt-get install -y \
     git \
     locales \
     nodejs \
+    npm \
     zsh \
+    # Install Yarn
+    && npm install -g yarn \
     # Set up locale needed for Oh My Zsh themes
     && locale-gen en_US.UTF-8 \
     # Install Oh My Zsh. This needs curl, git and zsh packages installed first.
