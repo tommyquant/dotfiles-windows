@@ -52,12 +52,11 @@ choco install k-litecodecpackfull -y
 choco install audacity -y
 
 ###############################################################################
-# Enable WSL
+# Enable Hyper-V
 ###############################################################################
 
-Write-Host "Enabling WSL and Virtual Machine Platform..." -ForegroundColor "Yellow"
-dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
-dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+Write-Host "Enabling Hyper-V..." -ForegroundColor "Yellow"
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 
 ###############################################################################
 # Uninstall pre-installed apps
