@@ -42,7 +42,8 @@ choco install googlechrome -y
 # Install development packages
 choco install notepadplusplus.install -y
 choco install vscode -y
-choco install docker-desktop --pre -y # Use edge version so we can use Docker within WSL2
+choco install docker-desktop -y
+choco install vcxsrv -y
 
 # Install miscellaneous packages
 choco install adobereader -y
