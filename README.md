@@ -4,8 +4,8 @@ This repo contains instructions and files I use to set up my development environ
 
 This development environment is based on Docker containers. This means all of your repos and dependencies live inside containers. For me, this has a few benefits:
 
-- **Consistent environment** - This is useful if you need to write shell/bash scripts. For example, if your deployment environment is Linux but you use Windows, it's difficult to get scripts to run exactly the same in both environments. By developing inside a container, you can run your scripts locally in a Linux environment. No more Git Bash!
-- **Isolated workspaces and dependencies** - With Docker, it's easy to create containers with exactly what you need. You environment can be as minimal or full-fledged as you like. You can also have multiple development environments by creating multiple containers. For example, you can have separate containers for developing in Javascript and Rust.
+- **Consistent environment** - This is useful if you need to write shell/bash scripts. For example, if your deployment environment is Linux but you use Windows, it's difficult to get scripts to run exactly the same in both environments. By developing inside a container, you can develop and run your scripts locally in a Linux environment. No more Git Bash!
+- **Isolated workspaces and dependencies** - With Docker, it's easy to create containers with exactly what you need. Your environment can be as minimal or full-fledged as you like. You can also have multiple development environments by creating multiple containers. For example, you can have separate containers for developing in Javascript and Rust.
 - **Disk performance** - Personally, I have found using commands like `npm install` to be faster on Linux.
 
 ## Installation
@@ -13,13 +13,14 @@ This development environment is based on Docker containers. This means all of yo
 ### Installing Windows and bootstrapping
 
 1. Download Windows 10 image and create a bootable USB.
-1. By default, the installer will detect if you have a serial for the Home edition and won't give you an option to install Pro. To fix this, go into the USB and open the **sources** folder. Afterwards, create a file named **ei.cfg** and put the following into it:
+1. The bootstrap script installs Docker which requires Hyper-V which is not available in the Home edition. By default, the installer will detect if you have a serial for the Home edition and won't let you choose other editions to install. To fix this, go into the USB and open the **sources** folder. Afterwards, create a file named **ei.cfg** and put the following into it:
 ```
 [Channel]
 Retail
 ```
-3. Restart and boot into the USB and install Windows 10 Pro.
-1. After installation, download `bootstrap.ps1` from this repo.
+3. Restart and boot into the USB.
+1. When prompted for an edition to install, choose Enterprise, Pro, or Education.
+1. After installation, download this repo.
 1. Open Powershell in administrator mode.
 1. By default, Powershell won't execute foreign scripts. To bypass this, run `Set-ExecutionPolicy RemoteSigned`.
 1. Run `& "path/to/bootstrap.ps1"`. This will set a few Windows settings, install packages using Chocolatey and remove pre-installed bloatware.
