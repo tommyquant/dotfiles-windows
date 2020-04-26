@@ -40,17 +40,18 @@ choco install firefox -y
 choco install googlechrome -y
 
 # Install development packages
+choco install docker-desktop -y
 choco install notepadplusplus.install -y
 choco install vscode -y
-choco install docker-desktop -y
 choco install vcxsrv -y
 
 # Install miscellaneous packages
-choco install adobereader -y
 choco install 7zip.install -y
+choco install audacity -y
+choco install adobereader -y
 choco install bitwarden -y
 choco install k-litecodecpackfull -y
-choco install audacity -y
+choco install thunderbird -y
 
 ###############################################################################
 # Enable Hyper-V
