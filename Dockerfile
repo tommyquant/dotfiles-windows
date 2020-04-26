@@ -25,12 +25,13 @@ RUN echo 'Installing dev dependencies...' \
     && apt-get update && apt-get install yarn
 
 # Additional setup. Things below here are likely to change so we add them after package installations so Docker can use the build cache.
+ARG DISPLAY
 ARG GIT_USER_NAME
 ARG GIT_USER_EMAIL
 
 ENV SHELL /bin/zsh
 # This will let the container run GUI applications (as long as the host has an X server)
-ENV DISPLAY docker.for.win.localhost:0
+ENV DISPLAY $DISPLAY
 
 RUN echo 'Performing additional setup...' \
     # Set up locale needed for Oh My Zsh themes
