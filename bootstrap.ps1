@@ -41,6 +41,7 @@ choco install googlechrome -y
 
 # Install development packages
 choco install docker-desktop -y
+choco install git -y
 choco install notepadplusplus.install -y
 choco install vscode -y
 choco install vcxsrv -y
@@ -54,11 +55,18 @@ choco install k-litecodecpackfull -y
 choco install thunderbird -y
 
 ###############################################################################
-# Enable Hyper-V
+# Enable Hyper-V (for Docker)
 ###############################################################################
 
 Write-Host "Enabling Hyper-V..." -ForegroundColor "Yellow"
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+
+###############################################################################
+# Enable WSL
+###############################################################################
+
+Write-Host "Enabling WSL.." -ForegroundColor "Yellow"
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -All
 
 ###############################################################################
 # Uninstall pre-installed apps
