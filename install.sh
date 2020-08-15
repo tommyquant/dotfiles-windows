@@ -9,13 +9,15 @@ set +o allexport
 # Base packages
 ###############################################################################
 
-sudo apt-get update
+sudo apt update
 
-sudo apt-get install -y curl
-sudo apt-get install -y fonts-powerline
-sudo apt-get install -y git
-sudo apt-get install -y locales
-sudo apt-get install -y zsh
+# GCC compiler
+sudo apt install -y build-essential
+sudo apt install -y curl
+sudo apt install -y fonts-powerline
+sudo apt install -y git
+sudo apt install -y locales
+sudo apt install -y zsh
 
 # Install Oh My Zsh. This needs curl, git and zsh packages installed first.
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
@@ -28,12 +30,16 @@ echo 'Installing dev dependencies...'
 
 # Install Node
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-sudo apt-get install -y nodejs
+sudo apt install -y nodejs
 
 # Install Yarn
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-sudo apt update && sudo apt install yarn
+sudo apt update && sudo apt install -y yarn
+
+# Install Rust
+export RUSTUP_IO_THREADS=1
+curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y
 
 ###############################################################################
 # Additional setup
