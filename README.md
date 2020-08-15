@@ -48,3 +48,9 @@ Next, you'll need to set up VS Code so that it can connect to WSL.
 1. If you don't have it, install the [Remote - WSL](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl) extension. This will allow you to connect VS Code to WSL.
 1. Open the **Command Palette** and attach to WSL by executing **Remote-WSL: New Window**. This will open a new instance of VS Code and you can now open any file/folder residing within WSL.
 1. Start coding!
+
+## FAQ
+
+**I get 'Permission denied' when trying to run `cargo build`.**
+
+See [this issue for a fix](https://github.com/rust-lang/rust/issues/62031#issuecomment-508962191).
