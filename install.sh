@@ -25,6 +25,7 @@ sudo apt install -y build-essential
 sudo apt install -y curl
 sudo apt install -y git
 sudo apt install -y pulseaudio
+sudo apt install -y libgtk-3-0
 
 ###############################################################################
 # Dev dependencies
@@ -48,6 +49,7 @@ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y
 
 # Sciter
 git clone --depth 1 https://github.com/c-smile/sciter-js-sdk ~/sciter
+chmod -R 777 ~/sciter
 
 ###############################################################################
 # Additional setup
