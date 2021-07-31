@@ -10,25 +10,9 @@ I have based my development environment around the Windows Subsystem for Linux (
 
 ## Installation
 
-### Installing Windows and bootstrapping
-
-1. Download Windows 10 image and create a bootable USB.
-1. The bootstrap script installs Docker which requires Hyper-V which is not available in the Home edition. By default, the installer will detect if you have a serial for the Home edition and won't let you choose other editions to install. To fix this, go into the USB and open the **sources** folder. Afterwards, create a file named **ei.cfg** and put the following into it:
-```
-[Channel]
-Retail
-```
-3. Restart and boot into the USB.
-1. When prompted for an edition to install, choose Enterprise, Pro, or Education.
-1. After installation, download this repo.
-1. Open Powershell in administrator mode.
-1. By default, Powershell won't execute foreign scripts. To bypass this, run `Set-ExecutionPolicy RemoteSigned`.
-1. Run `& "path/to/bootstrap.ps1"`. This will set a few Windows settings, install packages using Chocolatey and remove pre-installed bloatware.
-
-Next, you'll need to set up your development environment. The first step is to create a container that will house all of your tools and dependencies.
-
 ### Setting up WSL
 
+1. [Install WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 1. Open the Microsoft Store and install a Linux distro such as Ubuntu.
 1. After installation, launch your distro. This should prompt you to create a new user.
 1. Clone this repo into WSL.

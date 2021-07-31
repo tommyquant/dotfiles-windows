@@ -20,8 +20,7 @@ echo 'Installing base packages...'
 
 sudo apt update
 
-# GCC compiler
-sudo apt install -y build-essential
+sudo apt install -y build-essential # GCC compiler, make, etc.
 sudo apt install -y curl
 sudo apt install -y git
 sudo apt install -y pulseaudio
